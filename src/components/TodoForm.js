@@ -1,30 +1,34 @@
-import React from "react";
+import React from 'react';
 
-class TodoForm extends React.Component {
-    constructor() {
+class TodoForm extends React.Component{
+    constructor(){
         super();
         this.state = {
-            input: ""
+            input: ''
         }
     }
-    handleChanges = e => {
+    handleChange = (e) => {
         this.setState({
             ...this.state,
             input: e.target.value
-        });
-    };
-    handleSubmit = e => {
-        e.preventDefault();
-        this.props.handleAddItem(this.state.input);
+        })
     }
 
-    render() {
-        return (
-            <form onSubmit={this.handleSubmit}>
-                <input onChange={this.handleChanges} type='text' name='item' />
-                <button>Add</button>
-            </form>
-        );
+    handleSubmit = (e) => {
+        e.preventDefault();
+        this.props.handleAdd(this.state.input);
+    }
+
+    render(){
+        return(
+        <form>
+          <input
+            placeholder= "Add a todo!"
+            onChange= {this.handleChange}
+          />
+          <button onClick= {this.handleSubmit}>Submit</button>
+        </form>
+        )
     }
 }
 
